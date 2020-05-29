@@ -13,3 +13,5 @@ Working                              staging                              reposi
 Ver Estatus:                                        git status
 Enviar archivos al staging area (W) ---> (S):       git add -A
 Para sacar del área de stage    (W) <--- (S):       git rm --cached <archivo>...
+
+Para el commit:                                     git commit -m "Comentario sobre el cambio"
