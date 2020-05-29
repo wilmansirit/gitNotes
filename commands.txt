@@ -1,18 +1,73 @@
-Ver configuración:                                  git --list
-Crear repositorio:                                  git init
+  ____                                _              ____   _   _   
+ / ___|___  _ __ ___   __ _ _ __   __| | ___  ___   / ___| (_) | |_ 
+| |   / _ \| '_ ` _ \ / _` | '_ \ / _` |/ _ \/ __| | |  _  | | | __|
+| |__| (_) | | | | | | (_| | | | | (_| | (_) \__ \ | |_| | | | | |_ 
+ \____\___/|_| |_| |_|\__,_|_| |_|\__,_|\___/|___/  \____| |_|  \__|
+                                                                    
+COMANDOS BASICOS
+      Ver configuración:                                  git config --list
+      Crear repositorio:                                  git init
 
-  (W)                                  (S)                                   (R)
-Working                              staging                              repository 
-   |                                     |                                     |
-   |                stage                |                                     |
-   | ----------------------------------> |               commit                |
-   |                                     | ----------------------------------> |
-   |                                  checkout                                 |
-   | <------------------------------------------------------------------------ |
+        (W)                                  (S)                                   (R)
+      Working                              staging                              repository 
+        |                                     |                                     |
+        |                stage                |                                     |
+        | ----------------------------------> |               commit                |
+        |                                     | ----------------------------------> |
+        |                                  checkout                                 |
+        | <------------------------------------------------------------------------ |
 
-Ver Estatus:                                        git status
-Enviar archivos al staging area (W) ---> (S):       git add -A
-Para sacar del área de stage    (W) <--- (S):       git rm --cached <archivo>...
+      Ver Estatus:                                        git status
+      Enviar archivos al staging area (W) ---> (S):       git add -A
+      Para sacar del área de stage    (W) <--- (S):       git rm --cached <archivo>...
 
-Para el commit:                                     git commit -m "Comentario sobre el cambio"
-Para ver el log de todos los commit:                git log
+      Para el commit:                                     git commit -m "Comentario sobre el cambio"
+      Para ver el log de todos los commit:                git log
+
+TRABAJANDO CON REPOSITORIOS EXTERNOS: GitHub
+      Clonar un repositorio:                              git clon <dirección del repositorio>
+      Ver las diferencias entre las ramas:                git diff
+      Descargar última version del repositorio externo:   git pull origin master
+
+WORKFLOW DE TRABAJO CON GitHub
+      Crear una Branch:                                   git branch <nueva_rama>
+      Cambiar a la nueva rama:                            git ckeckout <nueva_rama>
+      Ver todas las ramas (Locales y Remotas):            git branch -a
+      Hacer un commit a la nueva rama:                    git push -u origin <nueva_rama>  //Recordar el -u cuando se realiza el primer push
+      
+  Para hacer un merge entre las dos ramas:                
+      Cambiar a la rama master:                           git checkout master
+      Verificar estar en la rama deseada:                 git branch
+      Aseguranos que tenemos la última version:           git pull origin master
+      Mostrar todas las ramas que hemos "mergeado":       git branch --merged 
+      Hacer el merge:                                     git merge <branch_to_merge>
+      Hacer el push al repositorio externo:               git push origin master
+
+      Borrar la branch creada en el repositorio externo:  git push origin --delete <branch_a_borrar>
+      Para borrar la rama localmente:                     git branch -d <branch_a_borrar>  // Se recomienda siempre tenerla, no ocupa mucho espacio
+
+
+ARREGLANDO ERRORES (https://www.youtube.com/watch?v=7-JHoPyJy-Q&list=PLqRCtm0kbeHA8InuJVFqcQAbX1E6LrC5L&index=3&t=0s)
+
+      Modificar cambios localmente:
+            Para realizar cambios al último commit:                               git commit --amend
+            Si queremos volver SOLO ese archivo a como estaba 
+            en el repositorio:                                                    git checkout <nombre_archivo>
+            Mostrar los archivos modificados en cada commit:                      git log --stat
+
+      Mover un commit de una branch a otra en caso de haberse equivocado
+            Asegurarse estar en la rama master (ya estabas):                      git branch && git checkout master
+            Copiar el commit hash o commid que queremos copiar a la otra rama:    git log                                       // < ultimo_hash >
+            Cambiarnos a la rama donde debió haber sido el cambio:                git checkout <nombre_de_rama>
+            Copia (SOLO LO COPIA NO BORRA NADA) el cambio a la rama de interes:   git cherry-pick < ultimo_hash >
+
+      Borrar los cambios en la branch master dejando los cambios en la rama correcta
+            Asegurarse estar en la rama master:                                   git branch && git checkout master
+              Existen tres modos:
+              SOFT: deja los archivos en el STAGE AREA:                           git reset --soft <hash del commit anterior>   // HASH NO EL ULTIMO GENERADO CON EL ERROR, SINO EL ANTERIOR A ESTE
+              MIX:  deja los archivos en el WORKING AREA:                         git reset <hash del commit anterior>          // HASH NO EL ULTIMO GENERADO CON EL ERROR, SINO EL ANTERIOR A ESTE
+              HARD: borra los archivos del WORKING DIRECTORY:                     git reset --hard <hash del commit anterior>   // HASH NO EL ULTIMO GENERADO CON EL ERROR, SINO EL ANTERIOR A ESTE
+            Si requeremos ver los commits que fueron borrados:                    git reflog
+            Ver las diferencias entre commits:                                    git diff <hash_1> <hash_2>
+
+
