@@ -35,16 +35,37 @@ WORKFLOW DE TRABAJO CON GitHub
       Ver todas las ramas (Locales y Remotas):            git branch -a
       Hacer un commit a la nueva rama:                    git push -u origin <nueva_rama>  //Recordar el -u cuando se realiza el primer push
       
-  Para hacer un merge entre las dos ramas:                
+  Para hacer un MERGE entre las dos ramas:                
+
+             A---B---C feature        merge             A---B---C feature
+            /                        ======>           /         \
+      D---E---F---G master                        D---E---F---G---H master
+
       Cambiar a la rama master:                           git checkout master
       Verificar estar en la rama deseada:                 git branch
       Aseguranos que tenemos la última version:           git pull origin master
       Mostrar todas las ramas que hemos "mergeado":       git branch --merged 
-      Hacer el merge:                                     git merge <branch_to_merge>
+      Hacer el merge:                                     git merge <feature>
+      También puede usarse:                               git merge master <feature>
       Hacer el push al repositorio externo:               git push origin master
 
       Borrar la branch creada en el repositorio externo:  git push origin --delete <branch_a_borrar>
       Para borrar la rama localmente:                     git branch -d <branch_a_borrar>  // Se recomienda siempre tenerla, no ocupa mucho espacio
+
+
+  Para hacer un REBASE entre las dos ramas: 
+
+             A---B---C feature        rebase                     A'--B'--C' feature
+            /                        ======>                   /         
+      D---E---F---G master                        D---E---F---G master
+
+      Cambiar a la rama feature:                          git checkout <feature>
+      Aseguranos que tenemos la última version:           git pull origin <feature>
+      Hacer el rebase:                                    git rebase <feature>
+      También puede usarse:                               git rebase master topic
+
+
+
 
 
 ARREGLANDO ERRORES (https://www.youtube.com/watch?v=7-JHoPyJy-Q&list=PLqRCtm0kbeHA8InuJVFqcQAbX1E6LrC5L&index=3&t=0s)
@@ -71,3 +92,6 @@ ARREGLANDO ERRORES (https://www.youtube.com/watch?v=7-JHoPyJy-Q&list=PLqRCtm0kbe
             Ver las diferencias entre commits:                                    git diff <hash_1> <hash_2>
 
 
+Tips:
+1.- Si se ya se tiene el repositorio local y se creo por separado el remoto use git pull con la siguiente bandera
+      git pull --allow-unrelated-histories origin master
