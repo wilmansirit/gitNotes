@@ -1,0 +1,15 @@
+Ver configuración:                                  git --list
+Crear repositorio:                                  git init
+
+  (W)                                  (S)                                   (R)
+Working                              staging                              repository 
+   |                                     |                                     |
+   |                stage                |                                     |
+   | ----------------------------------> |               commit                |
+   |                                     | ----------------------------------> |
+   |                                  checkout                                 |
+   | <------------------------------------------------------------------------ |
+
+Ver Estatus:                                        git status
+Enviar archivos al staging area (W) ---> (S):       git add -A
+Para sacar del área de stage    (W) <--- (S):       git rm --cached <archivo>...
