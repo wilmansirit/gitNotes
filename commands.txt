@@ -114,5 +114,9 @@ Tips:
       git revert HEAD
       git push
 
+4.- Recordar que la MEJOR MANERA de hacerlo es dejado los archivos en el "working area" con:
+      git reset <hash del commit anterior> 
+      git push -f origin master
+
 
 
