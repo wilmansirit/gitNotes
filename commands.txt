@@ -88,6 +88,9 @@ ARREGLANDO ERRORES (https://www.youtube.com/watch?v=7-JHoPyJy-Q&list=PLqRCtm0kbe
               SOFT: deja los archivos en el STAGE AREA:                           git reset --soft <hash del commit anterior>   // HASH NO EL ULTIMO GENERADO CON EL ERROR, SINO EL ANTERIOR A ESTE
               MIX:  deja los archivos en el WORKING AREA:                         git reset <hash del commit anterior>          // HASH NO EL ULTIMO GENERADO CON EL ERROR, SINO EL ANTERIOR A ESTE
               HARD: borra los archivos del WORKING DIRECTORY:                     git reset --hard <hash del commit anterior>   // HASH NO EL ULTIMO GENERADO CON EL ERROR, SINO EL ANTERIOR A ESTE
+            
+              LUego se deben forzar los cambios en el REMOTO:                     git push -f origin master (IMPORTANTE)
+
             Si requeremos ver los commits que fueron borrados:                    git reflog
             Ver las diferencias entre commits:                                    git diff <hash_1> <hash_2>
 
