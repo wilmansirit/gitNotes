@@ -91,7 +91,25 @@ ARREGLANDO ERRORES (https://www.youtube.com/watch?v=7-JHoPyJy-Q&list=PLqRCtm0kbe
             Si requeremos ver los commits que fueron borrados:                    git reflog
             Ver las diferencias entre commits:                                    git diff <hash_1> <hash_2>
 
+            Tambien funciona sin especificar el hash con:                         git reset HEAD~1
+                                                                                  git reset --soft HEAD~1
+                                                                                  git hard --soft HEAD~1
 
 Tips:
 1.- Si se ya se tiene el repositorio local y se creo por separado el remoto use git pull con la siguiente bandera
+      git remote add origin <url to remote>
+      git remote -v
       git pull --allow-unrelated-histories origin master
+
+2.- También para eliminar localmente un commit anterior
+      Aseguranos estar en la rama indicada:
+            git branch
+            git checkout <rama>
+      git rebase -i <hash del commit anterior> 
+
+3.- Para eliminar un commit en la rama remota (ESTO TAMBIEN ELIMINA EN EL LOCAL)
+      git revert HEAD
+      git push
+
+
+
