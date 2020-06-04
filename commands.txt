@@ -118,5 +118,48 @@ Tips:
             git reset <hash del commit anterior> 
             git push -f origin master
 
+4.- Generalmente se trabajan bajo tres ramass:
+      4.1.- master: que lleva la versión estable del Proyecto.
+      4.2.- develop: donde estén reflejados los últimos cambios realizados, y que sirve como rama de integración con master.
+            (Cada fusión en la rama master genera una nueva versión en el proyecto.)
 
+                  a.- Crear una rama develop:
 
+                        git checkout -b develop
+
+                  b.- Cuando se decide que se ha llegado a un punto estable y que está listo para ser desplegado, se fusiona con 
+                        la rama master y se etiqueta incluyendo un comentario que describa la situación
+
+                        git checkout master
+                        git merge --no-ff develop
+                        git tag -a v0.1 -m ‘primera versión 0.1’ 
+                        git push origin master
+                        git push origin v0.1
+
+      4.3.- feature: generalmente se desarrollan nuevas características del proyecto, partiendo siempre de la rama develop
+
+                  a.- Partiendo siempre de la rama develop:
+
+                        git checkout -b feature-nueva develop
+
+                  b.- Incorporando los cambios a la misma, eliminando posteriormente la rama:
+
+                        git checkout develop
+                        git merge --no-ff feature-nueva
+                        git branch -d feature-nueva
+                        git push origin develop
+
+      4.4.- hotfix: se utilizan para corregir errores detectados en el código en producción, por lo que en este caso se parte 
+            de la rama master evitando de esta manera incluir cambios realizados en la rama develop que pueden no estar 
+            todavía estables.
+
+                  a.- git checkout -b hotfix-0.1.1 master
+
+                  b.- Corregido el error, se integran los cambios de nuevo en la rama master generando una nueva versión del proyecto 
+                        e incorporando los cambios también en la rama develop
+
+                        git checkout master
+                        git merge --no-ff hotfix-0.1.1
+                        git tag -a 0.1.1
+                        git checkout develop
+                        git merge --no-ff hotfix-0.1.1
