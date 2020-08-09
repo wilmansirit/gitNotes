@@ -163,3 +163,19 @@ Tips:
                         git tag -a 0.1.1
                         git checkout develop
                         git merge --no-ff hotfix-0.1.1
+
+5.- Al iniciar el trabajo comparar con la rama remota:
+      git fetch --all
+      git diff origin/master
+
+6.- Recordar ENMENDANDO ERRORES al HACER COMMIT
+      6.1 Agregar cambios a un commit ya hecho (SE NOS OLVIDO AGRAGAR AL COMMIT ANTERIOR)
+            git add .
+            git status
+            git commit --amend --no-edit
+
+            verificando
+            git log --oneline
+
+      6.2 Cambiando el MENSAJE DEL COMMIT MAS RECIENTE      
+            git commit --amend -m "INGRESAR EL NUEVO MENSAJE"
